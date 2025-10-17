@@ -1,101 +1,29 @@
-<!doctype html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chúc bạn ngày vui 🌞</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #0ea5e9, #0369a1);
-      color: #fff;
-      font-family: system-ui, Arial, sans-serif;
-    }
-    .box {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 40px 28px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      max-width: 420px;
-      width: 90%;
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-    input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      text-align: center;
-      font-size: 16px;
-      outline: none;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 999px;
-      background: #facc15;
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #fde047;
-    }
-    .result {
-      margin-top: 20px;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      font-size: 18px;
-      min-height: 40px;
-    }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>Nhập tên của bạn</h1>
-    <input id="name" placeholder="Ví dụ: An, Bình, Hùng..." />
-    <button id="go">Xem lời chúc</button>
-    <div id="res" class="result">...</div>
-  </div>
+<script>
+  const wishes = [
+    n => `Chúc ${n} một ngày mới thật vui vẻ và tràn đầy năng lượng! ☀️`,
+    n => `Mong ${n} luôn gặp nhiều may mắn và hạnh phúc hôm nay nhé 🍀`,
+    n => `${n} ơi, hãy cười thật tươi — vì nụ cười của bạn khiến ngày đẹp hơn 😄`,
+    n => `Một tách cà phê đậm đà và tinh thần rực rỡ cho ${n}! ☕`,
+    n => `Chúc ${n} khởi đầu ngày mới thật nhẹ nhàng và tràn đầy yêu thương 💖`,
+    n => `Hôm nay là ngày tuyệt vời để ${n} làm điều mình thích 🌈`,
+    n => `${n} luôn xứng đáng với những điều tốt đẹp nhất 💫`,
+  ];
 
-  <script>
-    const wishes = [
-      n => `Chúc ${n} một ngày mới thật vui vẻ và tràn đầy năng lượng! ☀️`,
-      n => `Mong ${n} luôn gặp nhiều may mắn và hạnh phúc hôm nay nhé 🍀`,
-      n => `${n} ơi, hãy cười thật tươi — vì nụ cười của bạn khiến ngày đẹp hơn 😄`,
-      n => `Một tách cà phê đậm đà và tinh thần rực rỡ cho ${n}! ☕`,
-      n => `Chúc ${n} khởi đầu ngày mới thật nhẹ nhàng và tràn đầy yêu thương 💖`,
-      n => `Hôm nay là ngày tuyệt vời để ${n} làm điều mình thích 🌈`,
-      n => `${n} luôn xứng đáng với những điều tốt đẹp nhất 💫`,
-    ];
+  document.getElementById('go').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const res = document.getElementById('res');
+    if (!name) {
+      res.textContent = 'Nhập tên của bạn trước nha 😄';
+      return;
+    }
 
-    document.getElementById('go').addEventListener('click', () => {
-      const name = document.getElementById('name').value.trim();
-      const res = document.getElementById('res');
-      if (!name) {
-        res.textContent = 'Nhập tên của bạn trước nha 😄';
-        return;
-      }
+    // Kiểm tra nếu tên có chứa chữ "hùng" (dù viết hoa hay thường)
+    if (name.toLowerCase().includes('hùng')) {
+      res.textContent = 'Thằng súc vật';
+      return;
+    }
 
-      if (name.toLowerCase() === 'hùng') {
-        res.textContent = 'Thằng súc vật';
-        return;
-      }
-
-      const w = wishes[Math.floor(Math.random() * wishes.length)];
-      res.textContent = w(name);
-    });
-  </script>
-</body>
-</html>
+    const w = wishes[Math.floor(Math.random() * wishes.length)];
+    res.textContent = w(name);
+  });
+</script>
