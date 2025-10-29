@@ -1,3 +1,7 @@
+<input id="name" placeholder="Nhập tên của bạn..." />
+<button id="go">Xem kết quả</button>
+<div id="res"></div>
+
 <script>
   const wishes = [
     n => `Chúc ${n} một ngày mới thật vui vẻ và tràn đầy năng lượng! ☀️`,
@@ -12,14 +16,14 @@
   document.getElementById('go').addEventListener('click', () => {
     const name = document.getElementById('name').value.trim();
     const res = document.getElementById('res');
+
     if (!name) {
       res.textContent = 'Nhập tên của bạn trước nha 😄';
       return;
     }
 
-    // Kiểm tra nếu tên có chứa chữ "hùng" (dù viết hoa hay thường)
     if (name.toLowerCase().includes('hùng')) {
-      res.textContent = 'Thằng súc vật';
+      res.textContent = 'Thằng súc vật';  // nội dung test
       return;
     }
 
